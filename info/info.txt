@@ -1,0 +1,22 @@
+SETUP
+
+echo logpath=c:\data\log\mongod.log> "C:\Program Files\MongoDB\Server\3.0\config\mongod.cfg"
+echo dbpath=c:\data\db>> "C:\Program Files\MongoDB\Server\3.0\config\mongod.cfg"
+sc.exe create MongoDB binPath= "\"C:\Program Files\MongoDB\Server\3.0\bin\mongod.exe\" --service --config=\"C:\Program Files\MongoDB\Server\3.0\config\mongod.cfg\"" DisplayName= "MongoDB" start= "auto"
+
+db.ApplicationProcess.find({"applicationProcessConfiguration.jobId.siteIdentifier":"PXUFK026203F3VBLZ6G8N79TD"}, {_id:1, "applicationProcessConfiguration.jobId":1}).sort({_id:-1}).limit(10).pretty()
+db.ApplicationProcess.find({"applicationProcessConfiguration.jobId.siteIdentifier":"PXUFK026203F3VBLZ6G8N79TD"}).sort({_id:-1}).limit(10).pretty()
+
+dwie przydatne querki + polecenia:
+
+show dbs
+show collections
+use NAZWABAZY
+db
+^^ printuje wybrana baze
+db.NAZWAKOLEKCJI.stats()
+
+http://steveridout.github.io/mongo-object-time/
+jak widzisz w danych typ w stylu
+ "_id" : ObjectId("55487f88756822825904b75e")
+to mozesz podpatrzyc tej stronce timestampa z tego ObjectId
